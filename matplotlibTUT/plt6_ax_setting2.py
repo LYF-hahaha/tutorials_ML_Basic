@@ -14,6 +14,7 @@ http://www.scipy-lectures.org/intro/matplotlib/matplotlib.html
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 x = np.linspace(-3, 3, 50)
 y1 = 2*x + 1
 y2 = x**2
@@ -27,28 +28,39 @@ plt.xlim((-1, 2))
 plt.ylim((-2, 3))
 
 # set new ticks
-new_ticks = np.linspace(-1, 2, 5)
-plt.xticks(new_ticks)
+new_ticks_x = np.linspace(-1, 2, 5)
+plt.xticks(new_ticks_x)
 # set tick labels
-plt.yticks([-2, -1.8, -1, 1.22, 3],
-           ['$really\ bad$', '$bad$', '$normal$', '$good$', '$really\ good$'])
+# plt.yticks([-2, -1.8, -1, 1.22, 3],
+#            ['$really\ bad$', '$bad$', '$normal$', '$good$', '$really\ good$'])
+new_ticks_y = np.linspace(-2, 2, 5)
+plt.yticks(new_ticks_y)
 # to use '$ $' for math text and nice looking, e.g. '$\pi$'
 
 # gca = 'get current axis'
+# 获取当前坐标轴
 ax = plt.gca()
-ax.spines['right'].set_color('none')
-ax.spines['top'].set_color('none')
+# 获取轴的“脊椎”（也就是图片的四个边框）
+ax.spines['right'].set_color('none') # 把右边的轴设置成透明
+ax.spines['top'].set_color('none') # 同上
 
+# 指定x轴
 ax.xaxis.set_ticks_position('bottom')
 # ACCEPTS: [ 'top' | 'bottom' | 'both' | 'default' | 'none' ]
 
-ax.spines['bottom'].set_position(('data', 0))
+# 另一个轴(y)的哪个位置与bottom轴相交
+# 即y轴的哪个位置会与x轴相交
+ax.spines['bottom'].set_position(('data', 1))
 # the 1st is in 'outward' | 'axes' | 'data'
-# axes: percentage of y axis
-# data: depend on y data
+# axes: percentage of y axis (0.1=10%)
+# data: depend on y data （y轴的1与x轴相交）
+# outward: y轴的最底端立在x轴上
 
+# 指定y轴
 ax.yaxis.set_ticks_position('left')
 # ACCEPTS: [ 'left' | 'right' | 'both' | 'default' | 'none' ]
 
-ax.spines['left'].set_position(('data',0))
+# 另一个轴(x)的哪个位置与left轴相交
+# 即在x轴上的哪个位置会与y轴相交
+ax.spines['left'].set_position(('data', 0.1))
 plt.show()

@@ -11,6 +11,8 @@ Tutorial reference:
 http://www.scipy-lectures.org/intro/matplotlib/matplotlib.html
 """
 
+# 多数据区分（有一个说明框框，说明每条线代表什么意思）
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -30,12 +32,25 @@ plt.xticks(new_sticks)
 plt.yticks([-2, -1.8, -1, 1.22, 3],
            [r'$really\ bad$', r'$bad$', r'$normal$', r'$good$', r'$really\ good$'])
 
+# 最简单的画图指令
+plt.plot(x, y1, label='linear line')
+plt.plot(x, y2, color='red', linewidth=1.0, linestyle='--', label='square line')
+# 并输出图例说明
+plt.legend(loc='upper right')
+
+# plt是有返回值的，可以赋值给l1
+# 如果想把返回值传入legend的handle中，后面需要加个逗号","
+# the "," is very important in here l1, = plt... and l2, = plt... for this step
 l1, = plt.plot(x, y1, label='linear line')
 l2, = plt.plot(x, y2, color='red', linewidth=1.0, linestyle='--', label='square line')
 
-plt.legend(loc='upper right')
-# plt.legend(handles=[l1, l2], labels=['up', 'down'],  loc='best')
-# the "," is very important in here l1, = plt... and l2, = plt... for this step
+# handel: 给与一个所要放如图中的线
+# loc=best: 自己找一个没那么多数据的地方放着（你拖动图片的时候会自动调节）
+plt.legend(handles=[l1, l2], labels=['up', 'down'],  loc='best')
+# 若只想打一个数据的说明，可做如下操作
+# plt.legend(handles=[l1,], labels=['aaa',],  loc='best')
+
+
 """legend( handles=(line1, line2, line3),
            labels=('label1', 'label2', 'label3'),
            'upper right')

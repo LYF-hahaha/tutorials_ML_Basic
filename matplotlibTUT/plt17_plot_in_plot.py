@@ -4,6 +4,7 @@
 # Youku video tutorial: http://i.youku.com/pythontutorial
 
 # 17 - plot in plot
+# 图中图
 """
 Please note, this script is for python3+.
 If you are using python2+, please modify it accordingly.
@@ -19,12 +20,14 @@ y = [1, 3, 4, 2, 5, 8, 6]
 
 # below are all percentage
 left, bottom, width, height = 0.1, 0.1, 0.8, 0.8
+# 坐标轴参数设定 单位是百分比（fig尺寸的百分比）
 ax1 = fig.add_axes([left, bottom, width, height])  # main axes
 ax1.plot(x, y, 'r')
 ax1.set_xlabel('x')
 ax1.set_ylabel('y')
 ax1.set_title('title')
 
+# 百分比不一样
 ax2 = fig.add_axes([0.2, 0.6, 0.25, 0.25])  # inside axes
 ax2.plot(y, x, 'b')
 ax2.set_xlabel('x')
@@ -34,6 +37,7 @@ ax2.set_title('title inside 1')
 
 # different method to add axes
 ####################################
+# 用plt最好放在一起，因为下面的plt.blabla是针对第一行plt操作的
 plt.axes([0.6, 0.2, 0.25, 0.25])
 plt.plot(y[::-1], x, 'g')
 plt.xlabel('x')

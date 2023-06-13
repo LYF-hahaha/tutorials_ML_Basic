@@ -17,15 +17,27 @@ import numpy as np
 x = np.arange(0, 10, 0.1)
 y1 = 0.05 * x**2
 y2 = -1 *y1
+y3 = 0.02* x**3
 
+# 定义子图1&坐标轴
 fig, ax1 = plt.subplots()
-
+# 让2个子图的x轴一样，同时创建副坐标轴(y)
+# 若是twiny，则是让两个子图的y轴一样，同时创建副x轴
+# 而画出来的副坐标轴之所以恰好与主坐标反着，是因为y2恰好是y1的负的(若改成y3，就完全不一样了)
+# 可以理解为自fit的过程
 ax2 = ax1.twinx()    # mirror the ax1
-ax1.plot(x, y1, 'g-')
-ax2.plot(x, y2, 'b-')
+
+# 画图
+l1, = ax1.plot(x, y1, 'g-')
+l2, = ax2.plot(x, y3, 'b-')
 
 ax1.set_xlabel('X data')
 ax1.set_ylabel('Y1 data', color='g')
-ax2.set_ylabel('Y2 data', color='b')
+# 次坐标轴
+ax2.set_ylabel('Y3 data', color='b')
+
+# plt.legend(loc='upper right')
+plt.legend(handles=[l1, l2], labels=['y1', 'y3'],  loc='best')
+
 
 plt.show()
